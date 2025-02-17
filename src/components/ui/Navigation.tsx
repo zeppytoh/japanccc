@@ -1,6 +1,7 @@
 import { ChevronDown, Mail, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import SILogoWhite from "../../assets/img/SI_logo_white@2x.png";
+
 interface NavItem {
   label: string;
   href: string;

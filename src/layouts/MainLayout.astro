@@ -4,6 +4,7 @@ import Navigation from "../components/ui/Navigation";
 import "../styles/global.css";
 import astroLogo from "../assets/astro.svg";
 import background from "../assets/background.svg";
+
 interface Props {
   title?: string;
   description?: string;
@@ -240,16 +241,6 @@ const {
         document.documentElement.classList.add("dark");
       }
       window.localStorage.setItem("theme", theme);
-    </script>
-
-    <!-- Animation initialization -->
-    <script>
-      import { autoAnimate } from "@formkit/auto-animate";
-
-      // Add smooth animations to dynamic elements
-      document.querySelectorAll("[data-auto-animate]").forEach((element) => {
-        autoAnimate(element);
-      });
     </script>
 
     <!-- Custom scripts -->
