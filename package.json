@@ -9,6 +9,25 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.2.5"
+    "@astrojs/react": "^4.2.0",
+    "@formkit/auto-animate": "^0.8.2",
+    "@popperjs/core": "^2.11.8",
+    "@tailwindcss/vite": "^4.0.6",
+    "@types/bootstrap": "^5.2.10",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "astro": "5.3.0",
+    "astro-bootstrap": "^0.7.0",
+    "bootstrap": "^5.3.3",
+    "lucide-react": "^0.475.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "swiper": "^11.2.2",
+    "tailwindcss": "^4.0.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16"
   }
 }
