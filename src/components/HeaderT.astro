@@ -1,0 +1,169 @@
+---
+
+---
+
+<header class="bg-white text-primary">
+  <div class="mx-auto max-w-7xl px-4 flex items-center justify-between h-16">
+    <!-- Left: Logo -->
+    <div class="flex-shrink-0">
+      <a href="/" aria-label="Home">
+        <!-- Default (desktop) logo -->
+        <img
+          src="/src/images/logo-blue.png"
+          alt="Logo"
+          class="hidden md:block h-16 w-auto"
+        />
+        <!-- Mobile logo -->
+        <img
+          src="/src/images/logo-white.png"
+          alt="Logo"
+          class="md:hidden h-16 w-auto"
+        />
+      </a>
+    </div>
+
+    <!-- Center: Nav links (hidden on mobile by default) -->
+    <nav class="hidden md:flex space-x-6">
+      <a
+        href="index.html"
+        class="hover:text-gray-300 transition-colors duration-200">大学生</a
+      >
+      <a
+        href="demo-branding-agency.html"
+        class="hover:text-gray-300 transition-colors duration-200">ご支援</a
+      >
+      <a
+        href="demo-branding-agency-about.html"
+        class="hover:text-gray-300 transition-colors duration-200"
+        >日本CCCについて</a
+      >
+      <!-- Example of a dropdown using a parent link and sub-links -->
+      <div class="relative group">
+        <button
+          class="hover:text-gray-300 transition-colors duration-200 inline-flex items-center"
+          aria-haspopup="true"
+        >
+          Services
+          <svg
+            class="h-4 w-4 ml-1 transition-transform transform group-hover:-rotate-180"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M5.23 7.21a.75.75 0 011.06.02L10 11.18l3.71-3.95a.75.75 0 111.08 1.04l-4.24 4.52a.75.75 0 01-1.08 0L5.25 8.27a.75.75 0 01-.02-1.06z"
+            ></path>
+          </svg>
+        </button>
+        <div
+          class="invisible opacity-0 group-hover:opacity-100 group-hover:visible transition-all duration-200 absolute top-full left-0 mt-2 bg-white text-gray-700 rounded shadow-md min-w-[180px] py-2 z-10"
+          role="menu"
+        >
+          <a
+            href="demo-branding-agency-services-detail.html"
+            class="block px-4 py-2 hover:bg-gray-100"
+            role="menuitem">Branding solutions</a
+          >
+          <a
+            href="demo-branding-agency-services-detail.html"
+            class="block px-4 py-2 hover:bg-gray-100"
+            role="menuitem">Design research</a
+          >
+          <a
+            href="demo-branding-agency-services-detail.html"
+            class="block px-4 py-2 hover:bg-gray-100"
+            role="menuitem">Web development</a
+          >
+          <a
+            href="demo-branding-agency-services-detail.html"
+            class="block px-4 py-2 hover:bg-gray-100"
+            role="menuitem">eCommerce solutions</a
+          >
+        </div>
+      </div>
+      <a
+        href="demo-branding-agency-portfolio.html"
+        class="hover:text-gray-300 transition-colors duration-200">リソース</a
+      >
+      <a
+        href="demo-branding-agency-contact.html"
+        class="hover:text-gray-300 transition-colors duration-200">Contact</a
+      >
+    </nav>
+
+    <!-- Right: Phone number (hidden on very small screens) -->
+    <div class="hidden sm:flex items-center">
+      <a
+        href="tel:0422-71-4172"
+        class="inline-flex items-center space-x-2 text-white hover:text-gray-300 transition-colors duration-200"
+      >
+        <!-- Example icon (feather phone-call) -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M15.05 5 C14.819 4.98 14.584 5.009 14.371 5.084..."></path>
+        </svg>
+        <span>1 800 222 000</span>
+      </a>
+    </div>
+
+    <!-- Mobile menu toggle button (shown on smaller screens) -->
+    <button
+      id="menuToggle"
+      class="md:hidden inline-flex flex-col items-center justify-center space-y-1 p-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#1d1d1d] focus:ring-white"
+      aria-label="Toggle Navigation"
+    >
+      <span class="block w-5 h-0.5 bg-white"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+    </button>
+  </div>
+
+  <!-- Mobile navigation (initially hidden) -->
+  <nav
+    id="mobileMenu"
+    class="md:hidden hidden flex flex-col space-y-2 px-4 pt-2 pb-4 bg-[#1d1d1d] text-white"
+    aria-label="Mobile Menu"
+  >
+    <a
+      href="index.html"
+      class="hover:text-gray-300 transition-colors duration-200">大学生</a
+    >
+    <a
+      href="demo-branding-agency.html"
+      class="hover:text-gray-300 transition-colors duration-200">ご支援</a
+    >
+    <a
+      href="demo-branding-agency-about.html"
+      class="hover:text-gray-300 transition-colors duration-200"
+      >日本CCCについて</a
+    >
+    <!-- Optionally replicate the dropdown items or handle them differently in mobile -->
+    <a
+      href="demo-branding-agency-services.html"
+      class="hover:text-gray-300 transition-colors duration-200">Services</a
+    >
+    <a
+      href="demo-branding-agency-portfolio.html"
+      class="hover:text-gray-300 transition-colors duration-200">リソース</a
+    >
+    <a
+      href="demo-branding-agency-contact.html"
+      class="hover:text-gray-300 transition-colors duration-200">Contact</a
+    >
+  </nav>
+</header>
+
+<!-- Minimal vanilla JS to toggle the mobile navigation -->
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  });
+</script>

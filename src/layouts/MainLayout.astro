@@ -1,9 +1,8 @@
 ---
 // src/layouts/MainLayout.astro
-import Navigation from "../components/ui/Navigation";
-import "../styles/global.css";
+import "../styles/global.css"; // uses Tailwindcss
 import astroLogo from "../assets/astro.svg";
-import background from "../assets/background.svg";
+import background from "../assets/images/404-bg.jpg";
 
 interface Props {
   title?: string;
@@ -63,7 +62,12 @@ const {
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
+    <!-- Crafto styles -->
+    <link rel="stylesheet" href="/css/vendors.min.css" />
+    <link rel="stylesheet" href="/css/icon.min.css" />
+    <link rel="stylesheet" href="/css/style.min.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+    <link rel="stylesheet" href="/css/branding-agency.css" />
     <!-- View Transitions API -->
     <meta name="view-transition" content="same-origin" />
 
@@ -74,12 +78,9 @@ const {
     <img id="background" src={background.src} alt="" fetchpriority="high" />
     <div class="flex min-h-screen flex-col">
       <!-- Navigation -->
-      <Navigation client:load />
 
       <!-- Main Content -->
-      <main class="flex-1">
-        <slot name="body" />
-      </main>
+      <slot />
 
       <!-- Footer -->
       <footer class="bg-charcoal-blue text-white">

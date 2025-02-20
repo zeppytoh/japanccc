@@ -1,0 +1,155 @@
+---
+// Import header data (your original HeaderData)
+// Adjust the import path as needed
+import HeaderData from "../data/HeaderData";
+---
+
+<!-- Main Header -->
+<header id="site-header" class="bg-white shadow sticky top-0 z-50">
+  <div class="container mx-auto flex items-center justify-between py-4 px-6">
+    <!-- Logo / Brand -->
+    <div class="logo">
+      <a href="/" class="text-2xl font-bold text-gray-800">Litho</a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex space-x-6">
+      {
+        HeaderData.map((item) => (
+          <div class="relative group">
+            <a
+              href={item.link ?? "#"}
+              class="text-gray-700 hover:text-blue-600 transition"
+            >
+              {item.title}
+            </a>
+            {item.dropdown && (
+              <div class="absolute left-0 mt-2 w-48 bg-white shadow rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                <ul>
+                  <ul>
+                    {item.dropdown.map((sub) => (
+                      <li>
+                        <a
+                          href={sub.link ?? "#"}
+                          class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
+                        >
+                          {sub.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </ul>
+              </div>
+            )}
+            {item.megamenu && (
+              <div class="absolute left-0 mt-2 w-full bg-white shadow rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                <div class="flex p-4">
+                  {item.megamenu.map((group) => (
+                    <div class="mr-8">
+                      {group.title && (
+                        <h3 class="mb-2 font-semibold text-gray-800">
+                          {group.title}
+                        </h3>
+                      )}
+                      <ul>
+                        {group.dropdown.map((linkItem) => (
+                          <li>
+                            <a
+                              href={linkItem.link ?? "#"}
+                              class="block px-2 py-1 text-gray-700 hover:bg-gray-100 transition"
+                            >
+                              {linkItem.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-toggle" class="md:hidden focus:outline-none">
+      <svg
+        class="w-6 h-6 text-gray-700"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav
+    id="mobile-menu"
+    class="md:hidden hidden bg-white border-t border-gray-200"
+  >
+    <ul class="divide-y divide-gray-200">
+      {
+        HeaderData.map((item) => (
+          <li key={item.title} class="px-4 py-2">
+            <a href={item.link ?? "#"} class="block text-gray-700 font-medium">
+              {item.title}
+            </a>
+            {item.dropdown && (
+              <ul class="mt-2 pl-4 space-y-1">
+                {item.dropdown.map((sub) => (
+                  <li key={sub.title}>
+                    <a href={sub.link ?? "#"} class="block text-gray-600">
+                      {sub.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {item.megamenu && (
+              <ul class="mt-2 pl-4 space-y-1">
+                {item.megamenu.map((group) => (
+                  <li key={group.title}>
+                    {group.title && (
+                      <p class="font-semibold text-gray-700">{group.title}</p>
+                    )}
+                    {group.dropdown && (
+                      <ul class="mt-1 pl-4 space-y-1">
+                        {group.dropdown.map((linkItem) => (
+                          <li key={linkItem.title}>
+                            <a
+                              href={linkItem.link ?? "#"}
+                              class="block text-gray-600"
+                            >
+                              {linkItem.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<!-- Minimal script for mobile menu toggle -->
+<script>
+  const menuToggle = document.getElementById("mobile-menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  menuToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>

@@ -1,0 +1,166 @@
+---
+// src/components/Footer.astro
+import { Image } from "astro:assets";
+import backgroundPattern from "../images/demo-branding-agency-pattern.svg";
+import footerLogo from "../images/demo-branding-agency-white-logo.png";
+
+interface Link {
+  title: string;
+  href: string;
+}
+
+interface SocialLink extends Link {
+  name: "pinterest" | "twitter" | "dribbble" | "instagram" | "behance";
+}
+
+interface Contact {
+  phone: string;
+  email: string;
+}
+
+const companyLinks: Link[] = [
+  { title: "Home", href: "demo-branding-agency.html" },
+  { title: "Agency", href: "demo-branding-agency-about.html" },
+  { title: "Services", href: "demo-branding-agency-services.html" },
+  { title: "Portfolio", href: "demo-branding-agency-portfolio.html" },
+  { title: "Contact", href: "demo-branding-agency-contact.html" },
+];
+
+const socialLinks: SocialLink[] = [
+  { name: "pinterest", title: "Pinterest", href: "https://pinterest.com/" },
+  { name: "twitter", title: "Twitter", href: "https://twitter.com/" },
+  { name: "dribbble", title: "Dribbble", href: "https://dribbble.com/" },
+  { name: "instagram", title: "Instagram", href: "https://instagram.com/" },
+  { name: "behance", title: "Behance", href: "https://behance.net/" },
+];
+
+const contactInfo: Contact = {
+  phone: "+81 080 7058 4020",
+  email: "info@domain.com",
+};
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  class="bg-charcoal-blue pb-4 sm-pb-50px"
+  style={`background-image: url(${backgroundPattern})`}
+>
+  <div class="container">
+    <div class="row mb-6">
+      <!-- Contact Column -->
+      <div class="col-lg-5 col-md-6 sm-mb-30px order-2 order-md-1">
+        <h3 class="text-white fw-500 alt-font mb-50px ls-minus-1px sm-mb-30px">
+          Let's make something great.
+        </h3>
+        <div class="row">
+          <div class="col-lg-5 col-6">
+            <span
+              class="alt-font fs-14 text-uppercase d-block text-white ls-1px lh-24"
+            >
+              Call our office
+            </span>
+            <a
+              href={`tel:${contactInfo.phone.replace(/ /g, "")}`}
+              class="text-white"
+            >
+              {contactInfo.phone}
+            </a>
+          </div>
+          <div class="col-lg-5 col-6">
+            <span
+              class="alt-font fs-14 text-uppercase d-block text-white ls-1px lh-24"
+            >
+              Send a message
+            </span>
+            <a href={`mailto:${contactInfo.email}`} class="text-white">
+              {contactInfo.email}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Company Links -->
+      <div class="col-md-2 offset-lg-1 col-6 order-3 order-md-2">
+        <span
+          class="alt-font fs-14 text-uppercase mb-5px d-block text-white ls-1px"
+        >
+          Company
+        </span>
+        <ul>
+          {
+            companyLinks.map((link) => (
+              <li>
+                <a href={link.href} class="text-white-hover">
+                  {link.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Social Links -->
+      <div class="col-md-2 col-6 order-3 order-md-3">
+        <span
+          class="alt-font fs-14 text-uppercase mb-5px d-block text-white ls-1px"
+        >
+          Follow Us
+        </span>
+        <ul>
+          {
+            socialLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-white-hover"
+                >
+                  {link.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Logo -->
+      <div class="col-md-2 order-1 order-md-4 sm-mb-30px">
+        <a href="/" class="footer-logo">
+          <Image
+            src={footerLogo}
+            alt="Company Logo"
+            class="img-fluid"
+            width="160"
+            height="40"
+          />
+        </a>
+      </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="row">
+      <div class="col-md-7 last-paragraph-no-margin">
+        <p class="fs-13 lh-22 w-95 sm-w-100">
+          This site is protected by reCAPTCHA and the Google privacy policy and
+          terms of service apply. You must not use this website if you disagree
+          with any of these website standard terms and conditions.
+        </p>
+      </div>
+      <div class="col-md-5 text-md-end sm-mt-15px last-paragraph-no-margin">
+        <p class="fs-13 lh-22">
+          &copy; {currentYear} Crafto is Powered by{" "}
+          <a
+            href="https://www.themezaa.com/"
+            target="_blank"
+            rel="noreferrer"
+            class="text-decoration-line-bottom text-white"
+          >
+            ThemeZaa
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

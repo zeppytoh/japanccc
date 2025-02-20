@@ -1,0 +1,190 @@
+---
+// src/components/AnimatedSection.astro
+---
+
+<section class="pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 relative">
+        <div class="row items-center relative md:mb-4">
+          <!-- Image group with staggered fade-in and parallax -->
+          <div class="col-md-5 sm:mb-8 fade-up parallax delay-1">
+            <img
+              class="w-50"
+              src="images/demo-branding-agency-about-01.png"
+              alt=""
+            />
+          </div>
+
+          <div
+            class="col-lg-7 col-md-7 sm:mb-8 text-right fade-up parallax delay-2"
+          >
+            <img
+              src="images/demo-branding-agency-about-02.png"
+              alt=""
+              class="shadow-2xl md:w-full"
+            />
+          </div>
+
+          <div
+            class="w-1/2 sm:w-full overflow-hidden absolute sm:relative left-[140px] -bottom-[200px] sm:bottom-0 sm:left-0 p-0 sm:px-4 fade-up parallax delay-3"
+          >
+            <img
+              src="https://via.placeholder.com/500x614"
+              alt=""
+              class="shadow-2xl w-full"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-5 col-lg-6 offset-xl-1 md:mt-5 sm:mt-0">
+        <!-- Content with staggered fade-in -->
+        <div class="mb-10px fade-up delay-2">
+          <span
+            class="w-25px h-1px d-inline-block bg-base-color me-5px align-middle"
+          ></span>
+          <span
+            class="text-gradient-base-color fs-15 alt-font fw-700 ls-05px text-uppercase d-inline-block align-middle"
+            >About branding agency</span
+          >
+        </div>
+
+        <h4
+          class="text-dark-gray alt-font fw-600 ls-minus-2px mb-20px fade-up delay-3"
+        >
+          We provide brilliant ideas and adding the world called success to your
+          brand.
+        </h4>
+
+        <p class="w-90 md-w-100 mb-35px sm-mb-20px fade-up delay-4">
+          Creating products with a strong identity. We provide brilliant ideas
+          and adding the world called success brand. We deliver customized
+          marketing campaign to use your audience to make a positive move.
+        </p>
+
+        <a
+          href="demo-branding-agency-about.html"
+          class="btn btn-large btn-dark-gray btn-switch-text btn-box-shadow border-1 left-icon me-10px sm-mb-15px sm-mt-15px"
+        >
+          <span>
+            <span><i class="feather icon-feather-edit"></i></span>
+            <span
+              class="btn-double-text btn-animated btn-outline"
+              data-text="Explore details">Explore details</span
+            >
+          </span>
+        </a>
+        <a
+          href="demo-branding-agency-services.html"
+          class="btn btn-large btn-transparent-light-gray border-1 btn-switch-text left-icon sm-mb-15px sm-mt-15px"
+        >
+          <span>
+            <span><i class="feather icon-feather-briefcase"></i></span>
+            <span
+              class="btn-double-text btn-animated btn-outline"
+              data-text="More services">More services</span
+            >
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Base animations */
+  .fade-up {
+    --fade-distance: 30px;
+    opacity: 0;
+    animation: fade-up 0.8s ease-out forwards;
+    animation-timeline: view();
+    animation-range: entry 20% cover 50%;
+  }
+
+  /* Stagger delays */
+  .delay-1 {
+    animation-delay: 0ms;
+  }
+  .delay-2 {
+    animation-delay: 200ms;
+  }
+  .delay-3 {
+    animation-delay: 400ms;
+  }
+  .delay-4 {
+    animation-delay: 600ms;
+  }
+  .delay-5 {
+    animation-delay: 800ms;
+  }
+
+  /* Parallax effect using CSS scroll animations */
+  .parallax {
+    animation: parallax linear both;
+    animation-timeline: scroll();
+    animation-range: 0 100vh;
+  }
+
+  /* Button animations */
+  .btn-animated {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-animated:not(.btn-outline) {
+  }
+
+  .btn-outline {
+  }
+
+  .btn-text {
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .btn-text::after {
+    content: attr(data-text);
+    position: absolute;
+    width: 100%;
+    transform: translateY(100%);
+    top: 0;
+    left: 0;
+  }
+
+  .btn-animated:hover .btn-text {
+    transform: translateY(-100%);
+  }
+
+  /* Animation keyframes */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(var(--fade-distance));
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes parallax {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(var(--scroll-percentage, 0) * -50px));
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .parallax {
+      animation: none;
+    }
+
+    .fade-up {
+      --fade-distance: 20px;
+    }
+  }
+</style>

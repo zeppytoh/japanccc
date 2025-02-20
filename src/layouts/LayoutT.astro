@@ -1,0 +1,90 @@
+---
+// src/layouts/MainLayout.astro
+import "../styles/global.css"; // uses Tailwindcss
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  ogType?: string;
+}
+
+const {
+  title = "JCCC - Japanese Campus Crusade for Christ",
+  description = "一生の友と、一生の成長を。新しい一歩を、ここから",
+  image = "/images/og-image.jpg",
+  ogType = "website",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/images/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon-57x57.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/images/apple-touch-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/images/apple-touch-icon-114x114.png"
+    />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Crafto styles -->
+
+    <!-- View Transitions API -->
+    <meta name="view-transition" content="same-origin" />
+
+    <!-- Custom Styles -->
+    <slot name="head" />
+  </head>
+  <body
+    data-mobile-nav-trigger-alignment="right"
+    data-mobile-nav-style="modern"
+    data-mobile-nav-bg-color="#1d1d1d"
+  >
+    <slot />
+  </body>
+</html>
+
+<style>
+  #background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(100px);
+  }
+</style>

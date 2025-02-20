@@ -1,0 +1,34 @@
+---
+import type { CarouselSlideType } from "astro-bootstrap";
+import { Carousel } from "astro-bootstrap";
+const slides: CarouselSlideType[] = [
+  {
+    img: "src/images/demo-branding-agency-slider-01.jpg",
+    alt: "Welcome to JCCC",
+    active: true,
+  },
+  {
+    img: "src/images/demo-branding-agency-slider-02.jpg",
+    alt: "Join Our Community",
+  },
+  {
+    img: "src/images/demo-branding-agency-slider-03.jpg",
+    alt: "Get Involved",
+  },
+];
+const id = "banner-slider";
+---
+
+<Carousel {id} fade>
+  <Carousel.Indicators {id} {slides} />
+  <Carousel.Inner>
+    {
+      slides.map((slide) => (
+        <Carousel.Item active={slide.active}>
+          <img src={slide.img} class="d-block w-50 img-fluid" alt={slide.alt} />
+        </Carousel.Item>
+      ))
+    }
+  </Carousel.Inner>
+  <Carousel.Controls id={id} />
+</Carousel>

@@ -1,0 +1,215 @@
+---
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+const slides = [
+  {
+    image: "src/images/demo-branding-agency-slider-01.jpg",
+  },
+  {
+    image: "src/images/demo-branding-agency-slider-02.jpg",
+  },
+  {
+    image: "src/images/demo-branding-agency-slider-03.jpg",
+  },
+];
+
+/* 
+  Explanation of custom classes:
+  - .full-screen   → h-screen (force full viewport height)
+  - .ipad-top-space-margin → a top margin/padding for medium screens. 
+    Example approximation: "md:pt-8" or "md:mt-8"
+    Since original code doesn't specify the exact top space, we approximate.
+  - We replaced many bootstrap “col-*” with tailwind flexbox + w-1/2, etc.
+  - For text sizes, line heights, tracking, we used bracket notation or approximate Tailwind equivalents.
+  - For "fs-16 alt-font text-dark-gray fw-700 text-uppercase ls-05px" we used:
+    text-[16px] font-alt text-[var(--dark-gray)] font-semibold uppercase tracking-[0.5px]
+  - Similar for other classes. The goal is to keep the layout close to original.
+
+  You may refine the spacing (e.g., 'pl-10', 'pt-[30px]', etc.) as needed to match your design.
+*/
+---
+
+<section
+  class="relative
+    h-screen
+    md:h-auto /* .md-h-auto override if needed (makes height auto on md) */
+    md:pt-8 /* .ipad-top-space-margin → approximate top on md screens */
+    p-0"
+>
+  <div class="relative h-screen">
+    <div class="flex flex-wrap h-full">
+      <!-- Left column (text/content) -->
+      <div
+        class="xl:w-5/12 lg:w-1/2 w-full order-2 lg:order-1 flex flex-col justify-center px-10 md:px-0 relative"
+      >
+        <!-- Vertical title (hidden on small) -->
+        <div
+          class="hidden
+            md:flex
+            h-auto
+            w-[75px]
+            items-center
+            justify-center
+            absolute
+            top-1/2
+            -translate-y-1/2
+            text-[16px]
+            font-alt
+            font-[700]
+            
+            uppercase
+            tracking-[0.5px]
+            text-[var(--dark-gray)]"
+        >
+          Hello World
+        </div>
+
+        <!-- Main text box -->
+        <div
+          class="relative
+            z-[9]
+            border-l
+            border-[var(--extra-medium-gray)]
+            pl-[60px]
+            ml-[100px]
+            lg:pl-[30px]
+            lg:ml-[70px]
+            sm:pl-[30px]
+            sm:pr-[30px]
+            sm:ml-0"
+        >
+          <h1
+            class="text-charcoal-blue
+              font-alt
+              text-6xl
+              leading-[2.2rem]
+              tracking-[-0.04em]
+              mb-4"
+          >
+            Provide branding solutions to grow your business.
+          </h1>
+          <p
+            class="w-3/4
+              mb-[35px]
+              lg:w-[90%]
+              sm:w-full
+              text-2xl
+              font-light
+              text-[var(--medium-gray)]"
+          >
+            Creating products with a strong identity. We provide brilliant ideas
+            and adding the world called success brand.
+          </p>
+          <a
+            href="/contact"
+            class="inline-block
+              font-normal
+              text-lg text-blue-500
+              py-3
+              px-8
+              rounded-md
+              hover:opacity-90
+              transition
+              btn-gradient-fuel-yellow-blue"
+          >
+            Let's talk - Send a message
+          </a>
+        </div>
+      </div>
+
+      <!-- Right column (swiper) -->
+      <div
+        class="xl:w-7/12
+          lg:w-1/2
+          w-full
+          relative
+          md:min-h-[500px]
+          order-1
+          lg:order-2"
+      >
+        <div
+          class="swiper
+            h-full
+            relative
+            /* classes from 'banner-slider magic-cursor drag-cursor' not strictly replaced here,
+               but you can add more Tailwind if needed */"
+          data-slider-options='{
+            "slidesPerView": 1,
+            "loop": true,
+            "pagination": { "el": ".swiper-number-line-pagination", "clickable": true },
+            "navigation": { "nextEl": ".slider-one-slide-next-1", "prevEl": ".slider-one-slide-prev-1" },
+            "autoplay": { "delay": 4000, "stopOnLastSlide": true, "disableOnInteraction": false },
+            "keyboard": { "enabled": true, "onlyInViewport": true },
+            "effect": "fade"
+          }'
+          data-swiper-number-pagination-progress="true"
+        >
+          <div class="swiper-wrapper h-full">
+            {
+              slides.map((slide) => (
+                <div class="swiper-slide h-full">
+                  <div
+                    class="
+                      absolute
+                      left-0
+                      top-0
+                      w-full
+                      h-full
+                      bg-cover
+                      bg-center
+                    "
+                    style={`background-image: url(${slide.image});`}
+                  />
+                </div>
+              ))
+            }
+          </div>
+
+          <!-- Swiper pagination for smaller screens -->
+          <div
+            class="swiper-pagination
+              swiper-pagination-clickable
+              swiper-pagination-bullets
+              block
+              sm:hidden"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Swiper init script -->
+  <script>
+    import Swiper from "swiper";
+    import { Autoplay, Navigation, Pagination } from "swiper/modules";
+
+    // Initialize Swiper
+    const swiper = new Swiper(".swiper", {
+      modules: [Navigation, Pagination, Autoplay],
+
+      // Optional parameters
+      loop: true,
+
+      // Autoplay
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+
+      // Pagination
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+
+      // Navigation arrows
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
+</section>

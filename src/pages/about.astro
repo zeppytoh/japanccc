@@ -1,0 +1,14 @@
+---
+import BannerSliderT from "~/components/BannerSliderT.astro";
+import FooterT from "~/components/FooterT.astro";
+import HeaderT from "../components/HeaderT.astro";
+import Layout from "../layouts/LayoutT.astro";
+const title = "About Us";
+const description = "Learn more about our company and team.";
+---
+
+<Layout title={title} description={description}>
+  <HeaderT />
+  <BannerSliderT />
+  <FooterT />
+</Layout>
