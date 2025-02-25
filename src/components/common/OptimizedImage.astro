@@ -1,0 +1,86 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  src: ImageMetadata | string;
+  alt: string;
+  width?: number;
+  height?: number;
+  format?: "webp" | "avif" | "png" | "jpeg" | "jpg";
+  quality?: number;
+  class?: string;
+  sizes?: string;
+  loading?: "lazy" | "eager";
+  densities?: number[];
+  pictureAttributes?: Record<string, any>;
+  data?: Record<string, any>;
+  highDensitySuffix?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  format = "webp",
+  quality = 80,
+  class: className = "",
+  sizes = "100vw",
+  loading = "lazy",
+  densities,
+  pictureAttributes,
+  data = {},
+  highDensitySuffix = "@2x",
+} = Astro.props;
+
+// Extract data attributes
+const dataAttributes = Object.entries(data).reduce(
+  (acc, [key, value]) => {
+    acc[`data-${key}`] = value;
+    return acc;
+  },
+  {} as Record<string, any>
+);
+
+// Handle high-density image if needed (for retina displays)
+let highDensitySrc: ImageMetadata | string | undefined = undefined;
+
+if (typeof src === "string" && src.includes(".") && highDensitySuffix) {
+  // For string paths, attempt to construct high-density path
+  const parts = src.split(".");
+  const ext = parts.pop();
+  const basePath = parts.join(".");
+  highDensitySrc = `${basePath}${highDensitySuffix}.${ext}`;
+}
+---
+
+{
+  typeof src === "string" ? (
+    /* For external or dynamic images that can't be processed at build time */
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      class={className}
+      loading={loading}
+      {...dataAttributes}
+      {...(highDensitySrc && { "data-at2x": highDensitySrc })}
+    />
+  ) : (
+    /* For local images that can be optimized */
+    <Image
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      format={format}
+      quality={quality}
+      class={className}
+      sizes={sizes}
+      loading={loading}
+      densities={densities}
+      {...dataAttributes}
+    />
+  )
+}

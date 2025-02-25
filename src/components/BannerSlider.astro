@@ -1,14 +1,24 @@
 ---
 import "swiper/swiper-bundle.css";
+import OptimizedImage from "./common/OptimizedImage.astro";
+
+// Import images directly
+import slide1 from "../images/demo-branding-agency-slider-01.jpg";
+import slide2 from "../images/demo-branding-agency-slider-02.jpg";
+import slide3 from "../images/demo-branding-agency-slider-03.jpg";
+
 const slides = [
   {
-    image: "src/images/demo-branding-agency-slider-01.jpg",
+    image: slide1,
+    alt: "Branding agency slider image 1",
   },
   {
-    image: "src/images/demo-branding-agency-slider-02.jpg",
+    image: slide2,
+    alt: "Branding agency slider image 2",
   },
   {
-    image: "src/images/demo-branding-agency-slider-03.jpg",
+    image: slide3,
+    alt: "Branding agency slider image 3",
   },
 ];
 ---
@@ -63,8 +73,8 @@ const slides = [
                 <div class="swiper-slide">
                   <div
                     class="position-absolute left-0px top-0px w-100 h-100 cover-background background-position-center-top"
-                    style={`background-image:url(${slide.image});`}
-                  />
+                    style={`background-image:url(${slide.image.src});`}
+                  ></div>
                 </div>
               ))
             }
@@ -92,8 +102,61 @@ const slides = [
     </div>
   </div>
 </section>
+
+<script>
+  // Initialize Swiper on the client side
+  import Swiper from "swiper";
+  import {
+    Autoplay,
+    EffectFade,
+    Keyboard,
+    Navigation,
+    Pagination,
+  } from "swiper/modules";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const swiperElements = document.querySelectorAll(".banner-slider");
+
+    swiperElements.forEach((swiperEl) => {
+      const options = swiperEl.dataset.sliderOptions
+        ? JSON.parse(swiperEl.dataset.sliderOptions.replace(/'/g, '"'))
+        : {};
+
+      const swiper = new Swiper(swiperEl, {
+        modules: [Navigation, Pagination, Autoplay, EffectFade, Keyboard],
+        ...options,
+      });
+
+      // Handle pagination progress if needed
+      if (swiperEl.dataset.swiperNumberPaginationProgress === "true") {
+        const progressEl = document.querySelector(".swiper-progress");
+        const prevEl = document.querySelector(".number-prev");
+        const nextEl = document.querySelector(".number-next");
+
+        if (progressEl && prevEl && nextEl) {
+          prevEl.textContent = `01`;
+          nextEl.textContent = `0${swiper.slides.length}`;
+
+          swiper.on("slideChange", () => {
+            const progress =
+              ((swiper.realIndex + 1) / swiper.slides.length) * 100;
+            progressEl.style.width = `${progress}%`;
+          });
+        }
+      }
+    });
+  });
+</script>
+
 <style>
   h1 {
     line-height: 5rem;
+  }
+
+  /* Ensure background images maintain the right aspect ratio and cover */
+  :global(.swiper-slide .cover-background) {
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
   }
 </style>
