@@ -3,9 +3,10 @@ import "swiper/swiper-bundle.css";
 import OptimizedImage from "./common/OptimizedImage.astro";
 
 // Import images directly
-import slide1 from "../images/demo-branding-agency-slider-01.jpg";
-import slide2 from "../images/demo-branding-agency-slider-02.jpg";
-import slide3 from "../images/demo-branding-agency-slider-03.jpg";
+import slide1 from "../images/hpphoto1.jpg";
+import slide2 from "../images/hpphoto2.jpg";
+import slide3 from "../images/hpphoto3.jpg";
+import slide4 from "../images/hpphoto4.jpg";
 
 const slides = [
   {
@@ -18,6 +19,10 @@ const slides = [
   },
   {
     image: slide3,
+    alt: "Branding agency slider image 3",
+  },
+  {
+    image: slide4,
     alt: "Branding agency slider image 3",
   },
 ];
@@ -74,7 +79,7 @@ const slides = [
                   <div
                     class="position-absolute left-0px top-0px w-100 h-100 cover-background background-position-center-top"
                     style={`background-image:url(${slide.image.src});`}
-                  ></div>
+                  />
                 </div>
               ))
             }

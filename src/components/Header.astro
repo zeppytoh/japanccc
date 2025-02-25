@@ -1,33 +1,87 @@
 ---
+// Define props
+import OptimizedImage from "./common/OptimizedImage.astro";
 
+// Import logo images
+import logoBlue from "../assets/images/logo-blue.png";
+import logoBlue2x from "../assets/images/logo-blue@2x.png";
+import logoWhite from "../assets/images/logo-white.png";
+import logoWhite2x from "../assets/images/logo-white@2x.png";
+interface Props {
+  transparent?: boolean;
+}
+
+const { transparent = true } = Astro.props;
+
+// Navigation items
+const navItems = [
+  { label: "Home", url: "/" },
+  { label: "About", url: "/about" },
+  {
+    label: "Courses",
+    url: "/courses",
+    dropdown: [
+      {
+        icon: "bi bi-laptop",
+        title: "Development",
+        description: "Develop professional skills",
+        url: "/courses/development",
+      },
+      {
+        icon: "bi bi-briefcase",
+        title: "Business",
+        description: "Advance your business",
+        url: "/courses/business",
+      },
+      {
+        icon: "bi bi-vector-pen",
+        title: "Design",
+        description: "Design skills & concepts",
+        url: "/courses/design",
+      },
+      {
+        icon: "bi bi-megaphone",
+        title: "Marketing",
+        description: "New age marketing skills",
+        url: "/courses/marketing",
+      },
+    ],
+  },
+
+  { label: "Contact", url: "/contact" },
+];
 ---
 
-<!-- start header -->
 <header>
   <!-- start navigation -->
   <nav
-    class="navbar navbar-expand-lg header-light bg-white header-reverse glass-effect"
+    class={`navbar navbar-expand-lg ${
+      transparent
+        ? "header-transparent bg-base-color glass-effect header-reverse"
+        : ""
+    }`}
+    data-header-hover="light"
   >
     <div class="container-fluid">
       <div class="col-auto col-lg-2 me-lg-0 me-auto">
-        <a href="index.html" class="navbar-brand">
-          <img
-            src="src/images/logo-blue.png"
-            data-at2x="src/images/logo-blue@2x.png"
-            alt="logo-white"
+        <a href="/" class="navbar-brand">
+          <OptimizedImage
+            src={logoWhite}
+            alt="JCCC"
             class="default-logo"
+            data={{ at2x: logoWhite2x.src }}
           />
-          <img
-            src="src/images/logo-blue.png"
-            data-at2x="src/images/logo-blue@2x.png"
-            alt=""
+          <OptimizedImage
+            src={logoBlue}
+            alt="JCCC"
             class="alt-logo"
+            data={{ at2x: logoBlue2x.src }}
           />
-          <img
-            src="src/images/logo-blue.png"
-            data-at2x="src/images/logo-blue@2x.png"
-            alt=""
+          <OptimizedImage
+            src={logoWhite}
+            alt="JCCC"
             class="mobile-logo"
+            data={{ at2x: logoWhite2x.src }}
           />
         </a>
       </div>
@@ -50,18 +104,44 @@
           id="navbarNav"
         >
           <ul class="navbar-nav alt-font">
-            <li class="nav-item">
-              <a class="nav-link" href="#">ホーム</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/about">団体概要</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">リソース</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">お問い合わせ</a>
-            </li>
+            {
+              navItems.map((item) => (
+                <li
+                  class={`nav-item ${item.dropdown ? "dropdown dropdown-with-icon" : ""}`}
+                >
+                  <a href={item.url} class="nav-link">
+                    {item.label}
+                  </a>
+                  {item.dropdown && (
+                    <>
+                      <i
+                        class="fa-solid fa-angle-down dropdown-toggle"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      />
+                      <ul
+                        class="dropdown-menu"
+                        aria-labelledby="navbarDropdownMenuLink"
+                      >
+                        {item.dropdown.map((dropdownItem) => (
+                          <li>
+                            <a href={dropdownItem.url}>
+                              <i class={dropdownItem.icon} />
+                              <div class="submenu-icon-content">
+                                <span>{dropdownItem.title}</span>
+                                <p>{dropdownItem.description}</p>
+                              </div>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                </li>
+              ))
+            }
           </ul>
         </div>
       </div>

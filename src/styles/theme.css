@@ -1,13 +1,10 @@
-/* ===================================
-    Crafto - Branding agency
-====================================== */
 /* font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 /* variable */
 :root {     
-    --base-color: #e99022; 
-    --base-blue: #1ea3b1;
+    --base-color:rgb(25, 126, 204); 
+    --base-blue: rgb(30, 163, 177);
     --base-orange: #e97522;
     --base-yellow: #d18215;
     --medium-gray: #7b7a7a;
@@ -17,7 +14,7 @@
     --primary-font: 'Inter', sans-serif;
 }
 body {
-    line-height: 30px;
+    line-height: 4rem;
 }
 a:hover {
     color: var(--dark-gray);
@@ -40,7 +37,7 @@ header .header-button .btn.btn-switch-text.btn-medium > span {
     padding: 12px 22px;
 }
 header .navbar-brand img {
-    max-height: 60px;
+    max-height: 65px;
 }
 .navbar .navbar-nav .dropdown.dropdown-with-icon-style02 .dropdown-menu li a {
     font-size: 17px;
@@ -81,7 +78,7 @@ header .navbar-brand img {
     padding: 15px 30px;
 }
 .btn-gradient-fuel-yellow-blue {
-    background-image: linear-gradient(to right,rgb(79, 95, 33), var(--base-blue), var(--base-orange));
+    background-image: linear-gradient(to right, var(--base-color), var(--base-blue), var(--base-color));
     background-size: 200% auto;
     color: var(--white);
 }
