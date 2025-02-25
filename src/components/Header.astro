@@ -1,6 +1,5 @@
 ---
 // Define props
-import OptimizedImage from "./common/OptimizedImage.astro";
 
 // Import logo images
 import logoBlue from "../assets/images/logo-blue.png";
@@ -65,23 +64,29 @@ const navItems = [
     <div class="container-fluid">
       <div class="col-auto col-lg-2 me-lg-0 me-auto">
         <a href="/" class="navbar-brand">
-          <OptimizedImage
-            src={logoWhite}
+          <img
+            src={logoWhite.src}
             alt="JCCC"
             class="default-logo"
-            data={{ at2x: logoWhite2x.src }}
+            data-at2x={logoWhite2x.src}
+            width={logoWhite.width}
+            height={logoWhite.height}
           />
-          <OptimizedImage
-            src={logoBlue}
+          <img
+            src={logoBlue.src}
             alt="JCCC"
             class="alt-logo"
-            data={{ at2x: logoBlue2x.src }}
+            data-at2x={logoBlue2x.src}
+            width={logoBlue.width}
+            height={logoBlue.height}
           />
-          <OptimizedImage
-            src={logoWhite}
+          <img
+            src={logoBlue.src}
             alt="JCCC"
             class="mobile-logo"
-            data={{ at2x: logoWhite2x.src }}
+            data-at2x={logoBlue2x.src}
+            width={logoBlue.width}
+            height={logoBlue.height}
           />
         </a>
       </div>
@@ -166,3 +171,11 @@ const navItems = [
   </nav>
   <!-- end navigation -->
 </header>
+<style>
+  /* Ensure logos maintain proper aspect ratio */
+  .navbar-brand img {
+    max-height: 60px;
+    width: auto;
+    aspect-ratio: auto;
+  }
+</style>
