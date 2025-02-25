@@ -3,17 +3,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 /* variable */
 :root {     
-    --base-color:rgb(25, 126, 204); 
-
+    --base-color:rgb(255, 102, 181);
     --base-blue: rgb(30, 163, 177);
     --base-orange: #e97522;
     --base-yellow: #d18215;
-    --base-student:rgb(239, 189, 25);
-
     --medium-gray: #7b7a7a;
     --dark-gray: #1d1d1d;  
     --charcoal-blue: #232323;
-    --alt-font: 'Space Grotesk', sans-serif;
+    --alt-font: 'Inter', sans-serif;
     --primary-font: 'Inter', sans-serif;
 }
 body {
@@ -40,7 +37,7 @@ header .header-button .btn.btn-switch-text.btn-medium > span {
     padding: 12px 22px;
 }
 header .navbar-brand img {
-    max-height: 75px;
+    max-height: 85px;
 }
 .navbar .navbar-nav .dropdown.dropdown-with-icon-style02 .dropdown-menu li a {
     font-size: 17px;

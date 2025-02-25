@@ -1,7 +1,7 @@
 ---
 import BaseHead from "~/components/BaseHead.astro";
 import "../styles/global.scss";
-import "../styles/theme.css";
+import "../styles/sitheme.css";
 
 // Define props with TypeScript interface
 interface Props {
@@ -13,8 +13,8 @@ interface Props {
 
 // Destructure props with default values
 const {
-  title,
-  description = "一生涯の友と一生涯の成長を:日本キャンパスクルセードフォークライスト",
+  title = "StudentImpact - 国際的なキリスト教インカレ団体",
+  description = "一生涯の友と一生涯の成長を:StudentImpactは国際的なキリスト教インカレ団体です",
   ogImage = "/images/og-image.jpg",
   canonicalURL = Astro.url.href,
 } = Astro.props;
@@ -31,8 +31,8 @@ const {
     />
   </head>
   <body
-    data-mobile-nav-trigger-alignment="right"
-    data-mobile-nav-style="modern"
+    data-mobile-nav-trigger-alignment="center"
+    data-mobile-nav-style="classic"
     data-mobile-nav-bg-color="#1d1d1d"
   >
     <!-- Main Content Slot -->

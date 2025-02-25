@@ -1,5 +1,4 @@
 ---
-import "../styles/global.scss";
 interface Props {
   title: string;
   description: string;
@@ -44,10 +43,3 @@ const { title, description, ogImage, canonicalURL } = Astro.props as Props;
 <meta property="og:image" content={ogImage} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:type" content="website" />
-
-<!-- style sheets -->
-<!-- <link rel="stylesheet" href="/css/vendors.min.css" />
-<link rel="stylesheet" href="/css/icon.min.css" />
-<link rel="stylesheet" href="/css/style.css" />
-<link rel="stylesheet" href="/css/responsive.css" />
-<link rel="stylesheet" href="/css/elearning.css" /> -->
