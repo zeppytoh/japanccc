@@ -5,6 +5,7 @@ import icon from "astro-icon";
 
 export default defineConfig({
   // Configure Astro here
+  site: "https://japanccc.netlify.app",
   vite: {
     plugins: [tailwindcss()],
   },

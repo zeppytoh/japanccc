@@ -1,46 +1,58 @@
 ---
-// src/layouts/BaseLayout.astro
+import BaseHead from "~/components/BaseHead.astro";
 
-const { title } = Astro.props;
+// Define props with TypeScript interface
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+}
+
+// Destructure props with default values
+const {
+  title,
+  description = "一生涯の友と一生涯の成長を:日本キャンパスクルセードフォークライスト",
+  ogImage = "/images/og-image.jpg",
+  canonicalURL = Astro.url.href,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html class="no-js" lang="jp">
   <head>
-    <title>{title}</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="author" content="JapanCCC" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-
-    <!-- favicon icon -->
-    <link rel="shortcut icon" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon-57x57.png" />
-    <link
-      rel="apple-touch-icon"
-      sizes="72x72"
-      href="/apple-touch-icon-72x72.png"
+    <BaseHead
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      canonicalURL={canonicalURL}
     />
-    <link
-      rel="apple-touch-icon"
-      sizes="114x114"
-      href="/apple-touch-icon-114x114.png"
-    />
-    <!-- google fonts preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- style sheets and font icons  -->
-    <link rel="stylesheet" href="/css/vendors.min.css" />
-    <link rel="stylesheet" href="/css/icon.min.css" />
-    <link rel="stylesheet" href="/css/style.min.css" />
-    <link rel="stylesheet" href="/css/responsive.css" />
-    <link rel="stylesheet" href="/css/branding-agency.css" />
   </head>
   <body
     data-mobile-nav-trigger-alignment="right"
     data-mobile-nav-style="modern"
-    data-mobile-nav-bg-color="#1d1d1d"
+    data-mobile-nav-bg-color="#313e3b"
   >
+    <!-- Main Content Slot -->
     <slot />
+
+    <!-- Start Scroll Progress -->
+    <div class="scroll-progress d-none d-xxl-block">
+      <a href="#" class="scroll-top" aria-label="scroll">
+        <span class="scroll-text">Scroll</span>
+        <span class="scroll-line">
+          <span class="scroll-point"></span>
+        </span>
+      </a>
+    </div>
+    <!-- End Scroll Progress -->
+
+    <!-- JavaScript Libraries -->
+    <script is:inline src="/js/jquery.min.js"></script>
+    <script is:inline src="/js/vendors.min.js"></script>
+    <script is:inline src="/js/main.js"></script>
+
+    <!-- Additional Scripts -->
+    <slot name="additional-scripts" />
   </body>
 </html>
